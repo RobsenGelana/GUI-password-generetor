@@ -1,15 +1,18 @@
 from tkinter import *
-
+from tkinter import messagebox
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    with open('data.txt', 'a') as data:
-        web_data = web_entry.get()
-        email = email_entry.get()
-        password = passwrd_entry.get()
-        data.write(f"{web_data} | {email} | {password} \n")
+    web_data = web_entry.get()
+    email = email_entry.get()
+    password = passwrd_entry.get()
+    is_ok = messagebox.askokcancel(title=web_data, message=f"This are the data you entered \n. Email: {email} \n Password: {password}")
+    
+    if is_ok:
+        with open('data.txt', 'a') as data:
+            data.write(f"{web_data} | {email} | {password} \n")
     web_entry.delete(0, END)
     passwrd_entry.delete(0, END)
     web_entry.focus()
