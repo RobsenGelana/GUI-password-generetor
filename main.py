@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 #Password Generator Project
 import random
@@ -13,7 +12,6 @@ nr_symbols = random.randint(2, 4)
 nr_numbers = random.randint(2, 4)
 
 password_list = []
-
 for char in range(nr_letters):
   password_list.append(random.choice(letters))
 
