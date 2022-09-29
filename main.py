@@ -38,14 +38,11 @@ def save():
     if len(web_data) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Dont leave the filed's empty")
     else:
-        is_ok = messagebox.askokcancel(title=web_data, message=f"This are the data you entered \n. Email: {email} \n Password: {password}")
-        
-        if is_ok:
-            with open('data.txt', 'a') as data:
-                data.write(f"{web_data} | {email} | {password} \n")
-        web_entry.delete(0, END)
-        passwrd_entry.delete(0, END)
-        web_entry.focus()
+        with open('data.txt', 'a') as data:
+            data.write(f"{web_data} | {email} | {password} \n")
+            web_entry.delete(0, END)
+            passwrd_entry.delete(0, END)
+            web_entry.focus()
 
 # ---------------------------- UI SETUP ------------------------------- #
 
