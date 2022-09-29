@@ -1,6 +1,6 @@
-from cgitb import text
 from tkinter import *
 from tkinter import messagebox
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 #Password Generator Project
 import random
@@ -35,11 +35,17 @@ def save():
     web_data = web_entry.get()
     email = email_entry.get()
     password = passwrd_entry.get()
+    new_data = {
+        web_data:{
+            'email': email,
+            'password': password
+        }
+    }
     if len(web_data) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Dont leave the filed's empty")
     else:
-        with open('data.txt', 'a') as data:
-            data.write(f"{web_data} | {email} | {password} \n")
+        with open('data.json', 'w') as data:
+            json.dump(new_data)
             web_entry.delete(0, END)
             passwrd_entry.delete(0, END)
             web_entry.focus()
