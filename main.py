@@ -45,7 +45,7 @@ def save():
         messagebox.showinfo(title="Oops", message="Dont leave the filed's empty")
     else:
         with open('data.json', 'w') as data:
-            json.dump(new_data)
+            json.dump(new_data, data, indent=4)
             web_entry.delete(0, END)
             passwrd_entry.delete(0, END)
             web_entry.focus()
