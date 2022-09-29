@@ -4,6 +4,7 @@ import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 #Password Generator Project
 import random
+from types import new_class
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -44,8 +45,11 @@ def save():
     if len(web_data) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Dont leave the filed's empty")
     else:
+        with open('data.json', 'r') as data:
+            data_file = json.load(data)
+            data_file.update(new_data)
         with open('data.json', 'w') as data:
-            json.dump(new_data, data, indent=4)
+            json.dump(data_file, data, indent=4)
             web_entry.delete(0, END)
             passwrd_entry.delete(0, END)
             web_entry.focus()
