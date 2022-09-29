@@ -45,14 +45,19 @@ def save():
     if len(web_data) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Dont leave the filed's empty")
     else:
-        with open('data.json', 'r') as data:
-            data_file = json.load(data)
-            data_file.update(new_data)
-        with open('data.json', 'w') as data:
-            json.dump(data_file, data, indent=4)
-            web_entry.delete(0, END)
-            passwrd_entry.delete(0, END)
-            web_entry.focus()
+        try:
+            with open('data.json', 'r') as data:
+                data_file = json.load(data)
+                data_file.update(new_data)
+        except:
+            with open('data.json', 'w') as data:
+                json.dump(new_data, data, indent=4)
+        else:
+            with open('data.json', 'w') as data:
+                json.dump(data_file, data, indent=4)
+                web_entry.delete(0, END)
+                passwrd_entry.delete(0, END)
+                web_entry.focus()
 
 # ---------------------------- UI SETUP ------------------------------- #
 
