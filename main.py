@@ -37,10 +37,13 @@ def find_password():
         with open('data.json', 'r') as data_file:
             webs_data = web_entry.get()
             data = json.load(data_file)
-            files = data[f'{webs_data}']
-            email = files['email']
-            password = files['password']
-            messagebox.showinfo(title='Your info', message=f"email: {email} \n password: {password}")
+            if str(webs_data) in data.keys():
+                files = data[f'{webs_data}']
+                email = files['email']
+                password = files['password']
+                messagebox.showinfo(title='Your info', message=f"email: {email} \n password: {password}")
+            else:
+                messagebox.showinfo(title='ohh', message="No details for the website exists")
     except FileNotFoundError:
         messagebox.showerror(title='Opps', message="No Data File Found")
 # ---------------------------- SAVE PASSWORD ------------------------------- #
