@@ -31,6 +31,15 @@ def generate_password():
         password += char
 
     passwrd_entry.insert(0, password)
+# ---------------------------- FIND PASSWORD ------------------------------- #
+def find_password():
+    with open('data.json', 'r') as data_file:
+        webs_data = web_entry.get()
+        data = json.load(data_file)
+        files = data[f'{webs_data}']
+        email = files['email']
+        password = files['password']
+        messagebox.showinfo(title='Your info', message=f"email: {email} \n password: {password}")
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
     web_data = web_entry.get()
@@ -77,6 +86,9 @@ website.grid(column=0, row=1)
 web_entry = Entry(width=35)
 web_entry.focus()
 web_entry.grid(column=1, row=1)
+
+search_button = Button(text='Search', command=find_password)
+search_button.grid(column=2, row=1)
 
 user_name = Label(text='Email/Username: ')
 user_name.grid(column=0, row=2)
