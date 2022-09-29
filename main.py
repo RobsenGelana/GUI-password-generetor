@@ -55,9 +55,10 @@ def save():
         else:
             with open('data.json', 'w') as data:
                 json.dump(data_file, data, indent=4)
-                web_entry.delete(0, END)
-                passwrd_entry.delete(0, END)
-                web_entry.focus()
+        finally:
+            web_entry.delete(0, END)
+            passwrd_entry.delete(0, END)
+            web_entry.focus()
 
 # ---------------------------- UI SETUP ------------------------------- #
 
